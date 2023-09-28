@@ -33,3 +33,5 @@ kubectl logs vault
 и перейдем в vault
 ![img_1.png](img_1.png)
 
+В итоге мы получаем следующую UML диаграмму развертывания инфтраструктуры
+![UML-deployment.png](UML-deployment.png)
