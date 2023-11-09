@@ -176,14 +176,26 @@ $ kubectl create secret tls secret-tls --key="selfsigned.key" --cert="selfsigned
 
 ![3-apply.png](resources%2F3-apply.png)
 
+Добавим запись хоста в `/etc/hosts`:
+В работе можно использовать утилиту vim либо перенаправить поток echo в файл hosts
+```bash
+$ sudo vim /etc/hosts 
+```
+
+После добавления записи убедимся что она там есть:
+![44(1).png](resources%2F44%281%29.png)
+
 И запустим `minikube tunnel`:
 
 ![4-tunnel.png](resources%2F4-tunnel.png)
 
 Можем проверить зайдя по url: lab3terekhov.com
 
-И проверим сертификат
+Так как мы сами подписали этот сертификт, то не все браузеры позволят открыть сайт с таким сомнительным сертификатом, поэтому исользуем документацию Google Chrome, (https://www.usitility.com/google-chrome/how-to-fix-connection-is-not-private-chrome/) чтобы перейти к рпиложени прописав команду: `thisisunsafe`
 
+![43.png](resources%2F43.png)
+И проверим сертификат
+![42.png](resources%2F42.png)
 ### 1.4 Диаграмма развертывания:
 
 ![lab3.drawio.png](resources%2Flab3.drawio.png)

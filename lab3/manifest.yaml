@@ -45,7 +45,7 @@ spec:
       protocol: TCP
       name: http
   selector:
-    app: frontend
+    app: frontend-l3
 
 
 ---
@@ -56,9 +56,9 @@ metadata:
   name: ing-l3
 spec:
   tls:
+    - secretName: tls-secret
     - hosts:
         - lab3terekhov.com
-      secretName: secret-tls
   rules:
     - host: lab3terekhov.com
       http:
