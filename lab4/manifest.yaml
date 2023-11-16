@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: lab4-deployment
+  labels:
+    app: lab4-frontend
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: frontend-l4
+  template:
+    metadata:
+      labels:
+        app: frontend-l4
+    spec:
+      containers:
+        - name: frontend-l4
+          image: ifilyaninitmo/itdt-contained-frontend:master
+          env:
+            - name: REACT_APP_USERNAME
+              valueFrom:
+                configMapKeyRef:
+                  name: configmap-demo
+                  key: user
+
+            - name: REACT_APP_COMPANY_NAME
+              valueFrom:
+                configMapKeyRef:
+                  name: configmap-demo
+                  key: company
+
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: configmap-demo
+data:
+  user: "Nikita"
+  company: "ITMO University"
