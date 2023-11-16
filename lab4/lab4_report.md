@@ -6,8 +6,8 @@ Year: 2023/2024\
 Group: K4111c\
 Author: Terekhov Nikita Gennadievich\
 Lab: Lab4\
-Date of create: 07.10.2023\
-Date of finished: 07.10.2023
+Date of create: 16.11.2023\
+Date of finished: 16.11.2023
 
 ### Цель работы
 Познакомиться с CNI Calico и функцией `IPAM Plugin`, изучить особенности работы CNI и CoreDNS.
@@ -81,13 +81,13 @@ kubectl label nodes multinode-demo-m02 ra=a02
 
 - `nodeSelector` позволяет определить, какие ноды должны получать адрес из этого пула. В данном конкретном примере все ноды, находящиеся в "нулевой стойке", будут получать IP из этого пула.
 
-
+Проверим у calico дефолтный ippool:
 ```bash
 calicoctl get ippool -o wide --allow-version-mismatch
 ```
 ![calic-def.png](resources%2Fcalic-def.png)
 
-Мы проверяем у calico дефолтный ippool и удаляем его, заменяя на нашу конфигурацию:
+И удаляем его, заменяя на нашу конфигурацию:
 ```yaml
 apiVersion: projectcalico.org/v3
 kind: IPPool
@@ -181,10 +181,8 @@ kubectl port-forward lab4-deployment 3000:3000
 ![img_3.png](resources/img_3.png)
 
 ## 4. Ping подов
-Для начала получим все ip-адреса контейнеров калико:
-```bash
-```
-Используем перенаправление потока через grep чтобы быстро найти нужную информацию: 
+Для начала получим все ip-адреса контейнеров калико.
+Для этого используем перенаправление потока через grep чтобы быстро найти нужную информацию: 
 ```bash
  kubectl describe pods | grep IP
 ```
